@@ -6,10 +6,23 @@
 // ---- Prototypes ----
 void Render(void);
 void Initialise();
+
+MungoManager s_MungoManager;
+double      s_Time = 0.0;
+
+void CreateMungos()
+{
+    Coords c1( 0.25, 0.25 );
+    Coords c2( -0.25, -0.25 );
+    s_MungoManager.AddMungo( MungoFactory::CreateStaticMungo( c1 ) );
+    s_MungoManager.AddMungo( MungoFactory::CreateStaticMungo( c2 ) );
+    s_MungoManager.AddMungo( MungoFactory::CreateLinearMungo( c1, c2, 1.0, 3.0 ) );
+}
  
 // ---- Main Function ----
 int main(int argc, char** argv)
 {
+    CreateMungos();
 	glutInit(&argc,argv); 
 	glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);  
 	glutInitWindowSize(600,600);
@@ -19,7 +32,7 @@ int main(int argc, char** argv)
 	Initialise();
 	glutMainLoop();
 }
-
+ 
 void DrawTriangleAt( double x, double y )
 {
     double size = 0.05;
@@ -39,22 +52,15 @@ void Render(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
     
-    static double x = -0.5;
-    static bool increasing = true;
-    if( increasing )
-    {
-        x += 0.01;
-        increasing = ( x < 0.5 );
-    }
-    else
-    {
-        x -= 0.01;
-        increasing = ( x < -0.5 );
-    }
+    s_Time += 0.005;
     
-    DrawTriangleAt( x, 0.0 );
-    DrawTriangleAt( 0.0, -0.7 );
-
+    const int nMungos = s_MungoManager.nMungos();
+    for( int i = 0; i < nMungos; ++i )
+    {
+        Coords tempCoords;
+        s_MungoManager.GetCoords( i, s_Time, &tempCoords );
+        DrawTriangleAt( tempCoords.x, tempCoords.y );
+    }
  
 	glFlush();
     

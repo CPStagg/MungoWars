@@ -7,6 +7,7 @@
 //============================================================================
 
 #include "mungo.h"
+#include "ratioramp.h"
 
 #include <iostream>
 using namespace std;
@@ -16,46 +17,77 @@ Mungo::Mungo()
 	static int s_UniqueID = 0;
 	m_UniqueID = s_UniqueID++;
 
-	cout << "+++ CREATED NEW MUNGO of ID " << m_UniqueID << endl;
+	// cout << "+++ CREATED NEW MUNGO of ID " << m_UniqueID << endl;
 }
 
 Mungo::~Mungo()
 {
-	cout << "--- DELETED A MUNGO of ID " << m_UniqueID << endl;
-}
-
-void Mungo::TellMeStuff()
-{
-	cout << "My name is Mungo" << endl;
-}
-
-void Mungo::TellMeMoreStuff()
-{
-	cout << "I enjoy weasels" << endl;
+	// cout << "--- DELETED A MUNGO of ID " << m_UniqueID << endl;
 }
 
 // -----------------------------
 
-Bongo::Bongo()
+class StaticMungo : public Mungo
 {
-	cout << "++++++ CREATED NEW BONGO!" << endl;
-}
+public:
+    StaticMungo( const Coords& coords )
+    :   m_Coords( coords ) {}
+    
+    virtual Coords GetCoordsAtTime( double time ) const { return m_Coords; }
+    
+private:
+    Coords m_Coords;
+};
 
-Bongo::~Bongo()
-{
-	cout << "------ DELETED A BONGO!" << endl;
-}
+// -----------------------------
 
-void Bongo::TellMeMoreStuff()
+class LinearMoveMungo : public Mungo
 {
-	cout << "I enjoy raspberries" << endl;
-}
+public:
+    LinearMoveMungo( const Coords& start, const Coords& finish, double startTime, double endTime )
+    :   m_Start( start ), m_Finish( finish ), m_StartTime( startTime ), m_EndTime( endTime ) {}
+    
+    virtual Coords GetCoordsAtTime( double time ) const
+    {
+        RatioRamp timeRamp( m_StartTime, m_EndTime );
+        double ratio = timeRamp.RatioFromValue( time );
+        Coords shift = m_Finish - m_Start;
+        return m_Start + ( shift * ratio );
+    }
+    
+private:
+    Coords m_Start, m_Finish;
+    double m_StartTime, m_EndTime;
+};
 
 // --------------------------------
 
+void MungoManager::AddMungo( MungoCPtr ptr )
+{
+    m_List.AddItem(ptr);
+}
+    
+int MungoManager::nMungos() const
+{
+    return m_List.nEntries();
+}
+
+void MungoManager::GetCoords( int iMungo, double time, Coords* pCoords ) const
+{
+    *pCoords = m_List.GetItem( iMungo )->GetCoordsAtTime( time );
+}
+
+// ----------------------------
 
 // static
-MungoCPtr MungoFactory::CreateBasicMungo()
+MungoCPtr MungoFactory::CreateStaticMungo( const Coords& coords )
 {
-	return new Mungo;
+    return new StaticMungo( coords );
+}
+
+// static
+MungoCPtr MungoFactory::CreateLinearMungo( const Coords& start, const Coords& end,
+                                        double startTime, double endTime )
+{
+    return new LinearMoveMungo( start, end, startTime, endTime );
 }

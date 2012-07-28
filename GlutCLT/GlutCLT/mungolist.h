@@ -10,18 +10,33 @@
 #define	__MUNGOLIST_H__
 // ---------------------------------------
 
-template< class T > class MungoList
+template< class T > class List
 {
 public:
 
-	int	nMungos() const;
+    List() : m_Size( 0 ) {}
 
-	void 	AddMungo( Mungo* );
-	Mungo*	GetMungo( int index );
+	int	nEntries() const
+    {
+        return m_Size;
+    }
+
+	void 	AddItem( T t )
+    {
+        m_Elements[ m_Size++ ] = t;
+    }
+    // PRE( index < nEntries() );
+	const T&      GetItem( int index ) const
+    {
+        PRE( index < nEntries() );
+        
+        return m_Elements[ index ];
+    }
 
 private:
 
-	Mungo* m_Mungos[ 128 ];
+	T   m_Elements[ 128 ];
+    int m_Size;
 };
 
 #endif // __MUNGOLIST_H__
