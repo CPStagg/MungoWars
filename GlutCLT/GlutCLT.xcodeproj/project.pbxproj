@@ -1,0 +1,229 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F34A6B5815C4447200DFAFCD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34A6B5715C4447200DFAFCD /* main.cpp */; };
+		F34A6B5A15C4447200DFAFCD /* GlutCLT.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F34A6B5915C4447200DFAFCD /* GlutCLT.1 */; };
+		F34A6B6115C4448F00DFAFCD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F34A6B6015C4448F00DFAFCD /* OpenGL.framework */; };
+		F34A6B6315C4449900DFAFCD /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F34A6B6215C4449900DFAFCD /* GLUT.framework */; };
+		F34A6B6815C44D0700DFAFCD /* mungo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34A6B6615C44D0700DFAFCD /* mungo.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F34A6B5115C4447200DFAFCD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				F34A6B5A15C4447200DFAFCD /* GlutCLT.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F34A6B5315C4447200DFAFCD /* GlutCLT */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GlutCLT; sourceTree = BUILT_PRODUCTS_DIR; };
+		F34A6B5715C4447200DFAFCD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F34A6B5915C4447200DFAFCD /* GlutCLT.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = GlutCLT.1; sourceTree = "<group>"; };
+		F34A6B6015C4448F00DFAFCD /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		F34A6B6215C4449900DFAFCD /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		F34A6B6415C44D0700DFAFCD /* countedpointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countedpointer.h; sourceTree = "<group>"; };
+		F34A6B6515C44D0700DFAFCD /* CPSassert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSassert.h; sourceTree = "<group>"; };
+		F34A6B6615C44D0700DFAFCD /* mungo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mungo.cpp; sourceTree = "<group>"; };
+		F34A6B6715C44D0700DFAFCD /* mungo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mungo.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F34A6B5015C4447200DFAFCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F34A6B6315C4449900DFAFCD /* GLUT.framework in Frameworks */,
+				F34A6B6115C4448F00DFAFCD /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F34A6B4815C4447200DFAFCD = {
+			isa = PBXGroup;
+			children = (
+				F34A6B6215C4449900DFAFCD /* GLUT.framework */,
+				F34A6B6015C4448F00DFAFCD /* OpenGL.framework */,
+				F34A6B5615C4447200DFAFCD /* GlutCLT */,
+				F34A6B5415C4447200DFAFCD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F34A6B5415C4447200DFAFCD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F34A6B5315C4447200DFAFCD /* GlutCLT */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F34A6B5615C4447200DFAFCD /* GlutCLT */ = {
+			isa = PBXGroup;
+			children = (
+				F34A6B6415C44D0700DFAFCD /* countedpointer.h */,
+				F34A6B6515C44D0700DFAFCD /* CPSassert.h */,
+				F34A6B6615C44D0700DFAFCD /* mungo.cpp */,
+				F34A6B6715C44D0700DFAFCD /* mungo.h */,
+				F34A6B5715C4447200DFAFCD /* main.cpp */,
+				F34A6B5915C4447200DFAFCD /* GlutCLT.1 */,
+			);
+			path = GlutCLT;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F34A6B5215C4447200DFAFCD /* GlutCLT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F34A6B5D15C4447200DFAFCD /* Build configuration list for PBXNativeTarget "GlutCLT" */;
+			buildPhases = (
+				F34A6B4F15C4447200DFAFCD /* Sources */,
+				F34A6B5015C4447200DFAFCD /* Frameworks */,
+				F34A6B5115C4447200DFAFCD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GlutCLT;
+			productName = GlutCLT;
+			productReference = F34A6B5315C4447200DFAFCD /* GlutCLT */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F34A6B4A15C4447200DFAFCD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Ceri Stagg";
+			};
+			buildConfigurationList = F34A6B4D15C4447200DFAFCD /* Build configuration list for PBXProject "GlutCLT" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F34A6B4815C4447200DFAFCD;
+			productRefGroup = F34A6B5415C4447200DFAFCD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F34A6B5215C4447200DFAFCD /* GlutCLT */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F34A6B4F15C4447200DFAFCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F34A6B5815C4447200DFAFCD /* main.cpp in Sources */,
+				F34A6B6815C44D0700DFAFCD /* mungo.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F34A6B5B15C4447200DFAFCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F34A6B5C15C4447200DFAFCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F34A6B5E15C4447200DFAFCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F34A6B5F15C4447200DFAFCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F34A6B4D15C4447200DFAFCD /* Build configuration list for PBXProject "GlutCLT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F34A6B5B15C4447200DFAFCD /* Debug */,
+				F34A6B5C15C4447200DFAFCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F34A6B5D15C4447200DFAFCD /* Build configuration list for PBXNativeTarget "GlutCLT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F34A6B5E15C4447200DFAFCD /* Debug */,
+				F34A6B5F15C4447200DFAFCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F34A6B4A15C4447200DFAFCD /* Project object */;
+}
