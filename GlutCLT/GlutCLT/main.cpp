@@ -19,6 +19,20 @@ int main(int argc, char** argv)
 	Initialise();
 	glutMainLoop();
 }
+
+void DrawTriangleAt( double x, double y )
+{
+    double size = 0.05;
+    double sin30 = 0.5;
+    double sin60 = 0.86602540378444;
+    
+    glColor3f(1.0f, 0.0f, 0.5f);
+	glBegin(GL_POLYGON);
+    glVertex2f( x, y + size );
+    glVertex2f( x - ( size * sin60 ), y - ( size * sin30 ) );
+    glVertex2f( x + ( size * sin60 ), y - ( size * sin30 ) );
+	glEnd();
+}
  
 // ---- Render Function ----
 void Render(void)
@@ -38,14 +52,9 @@ void Render(void)
         increasing = ( x < -0.5 );
     }
     
- 
-    glColor3f(1.0f, 0.0f, 0.5f);
-	glBegin(GL_POLYGON);
-    glVertex2f(-0.5, x);
-    glVertex2f(-0.5, 0.7);
-    glVertex2f(0.5, 0.5);
-    glVertex2f(0.5, -0.5);
-	glEnd();
+    DrawTriangleAt( x, 0.0 );
+    DrawTriangleAt( 0.0, -0.7 );
+
  
 	glFlush();
     
