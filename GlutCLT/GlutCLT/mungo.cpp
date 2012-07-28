@@ -67,6 +67,39 @@ private:
 
 // -----------------------------
 
+class PathFollower : public Mungo
+{
+public:
+    PathFollower( const TimePosSequence& sequence )
+    :   m_Sequence( sequence )
+    {}
+    
+    virtual Coords GetCoordsAtTime( double time ) const
+    {
+        const int nSeqElements = m_Sequence.nEntries();
+        ASSERT( nSeqElements >= 2 );
+        
+        Coords result = m_Sequence.GetItem( nSeqElements - 1 ).m_Pos;
+        
+        for( int i = 1; i < nSeqElements; ++i )
+        {
+            const TimePosPair& latter = m_Sequence.GetItem( i );
+            double latestTime = latter.m_Time;
+            if( time <= latestTime )
+            {
+                
+            }
+        }
+        
+        return result;
+    }
+    
+private:
+    TimePosSequence m_Sequence;
+};
+
+// -----------------------------
+
 class LinearMoveMungo : public Mungo
 {
 public:
@@ -126,6 +159,15 @@ void MungoManager::GetCoords( int iMungo, double time, Coords* pCoords ) const
 {
     *pCoords = m_List.GetItem( iMungo )->GetCoordsAtTime( time );
 }
+
+
+const Mungo& MungoManager::GetMungo( int iMungo ) const
+{
+    PRE( iMungo < nMungos() );
+    
+    return *( m_List.GetItem( iMungo ) );
+}
+
 
 // ----------------------------
 

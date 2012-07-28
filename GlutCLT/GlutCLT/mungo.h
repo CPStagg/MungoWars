@@ -27,6 +27,25 @@ struct Coords
     double x, y;
 };
 
+struct TimePosPair
+{
+    Coords m_Pos;
+    double m_Time;
+};
+
+typedef List< TimePosPair > TimePosSequence;
+
+// ---------------------------------------
+
+struct MColor
+{
+    MColor() : r(0.0), g(0.0), b(0.0) {}
+    MColor( double ir, double ig, double ib ) : r( ir ), g ( ig ), b( ib ) {}
+
+    double r,g,b;
+};
+
+
 // ---------------------------------------
 
 class Mungo : public Referenced
@@ -36,10 +55,14 @@ public:
 	~Mungo();
     
     virtual Coords  GetCoordsAtTime( double time ) const = 0;
+    
+    void    AssignColor( MColor col ) { m_Color = col; }
+    MColor  GetColor() const { return m_Color; }
 
 private:
 
 	int m_UniqueID;
+    MColor m_Color;
 };
 
 typedef CountedPtr< Mungo > MungoCPtr;
@@ -49,6 +72,7 @@ typedef CountedPtr< Mungo > MungoCPtr;
 class MungoFactory
 {
 public:
+    static MungoCPtr CreatePathFollower( const TimePosSequence& );
 	static MungoCPtr CreateStaticMungo( const Coords& );
     static MungoCPtr CreateLinearMungo( const Coords& start, const Coords& end,
                                         double startTime, double endTime );
@@ -70,6 +94,11 @@ public:
     
     int     nMungos() const;
     void    GetCoords( int iMungo, double time, Coords* ) const;
+    
+    // PRE( iMungo < nMungos() );
+    const Mungo& GetMungo( int iMungo ) const;
+    
+    
 private:
     MungoList m_List;
 };
