@@ -41,7 +41,20 @@ void CreateMungos()
     s_MungoManager.AddMungo( firstHalfway );
     s_MungoManager.AddMungo( MungoFactory::CreateHalfWayBetween( firstMover, thirdMover));
 
-    s_MungoManager.AddMungo( MungoFactory::CreateOrbitAroundMungo(firstMover, 0.5, 7.0));
+    MungoCPtr orbiter = MungoFactory::CreateOrbitAroundMungo(thirdMover, 0.25, 3.0);
+    orbiter->AssignColor( MColor( 0.2, 1.0, 0.35 ) );
+    s_MungoManager.AddMungo( orbiter );
+    
+    MungoCPtr orbiter2 = MungoFactory::CreateTemporalOffset( orbiter, -0.5 );
+    MungoCPtr orbiter3 = MungoFactory::CreateTemporalOffset( orbiter, -1.0 );
+    
+    s_MungoManager.AddMungo( orbiter2 );
+    
+    s_MungoManager.AddMungo( orbiter3 );
+    
+    MungoCPtr metaorbiter = MungoFactory::CreateOrbitAroundMungo(orbiter, 0.1, 1.0);
+    metaorbiter->AssignColor( MColor( 0.5, 0.1, 0.1 ) );
+    s_MungoManager.AddMungo( metaorbiter );
 }
  
 // ---- Main Function ----
@@ -60,7 +73,7 @@ int main(int argc, char** argv)
  
 void DrawTriangleAt( double x, double y )
 {
-    double size = 0.05;
+    double size = 0.03;
     double sin30 = 0.5;
     double sin60 = 0.86602540378444;
     
