@@ -78,6 +78,7 @@ public:
                                         double startTime, double endTime );
     static MungoCPtr CreateTemporalOffset( MungoCPtr offsetTarget, double timeOffset );
     static MungoCPtr CreateHalfWayBetween( MungoCPtr one, MungoCPtr two );
+    static MungoCPtr CreateOrbitAroundMungo( MungoCPtr planet, double radius, double period );
 
 };
 

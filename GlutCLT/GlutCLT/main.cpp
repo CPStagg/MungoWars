@@ -40,6 +40,8 @@ void CreateMungos()
     
     s_MungoManager.AddMungo( firstHalfway );
     s_MungoManager.AddMungo( MungoFactory::CreateHalfWayBetween( firstMover, thirdMover));
+
+    s_MungoManager.AddMungo( MungoFactory::CreateOrbitAroundMungo(firstMover, 0.5, 7.0));
 }
  
 // ---- Main Function ----

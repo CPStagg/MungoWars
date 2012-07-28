@@ -10,6 +10,7 @@
 #include "ratioramp.h"
 
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 Mungo::Mungo()
@@ -27,6 +28,35 @@ Mungo::~Mungo()
 
 // -----------------------------
 
+class OrbitAroundMungo: public Mungo
+{
+public:
+    OrbitAroundMungo( const MungoCPtr& planet, double radius, double period )
+    {
+        m_planet = planet;
+        m_radius = radius;
+        m_period = period;
+    }
+    
+    virtual Coords GetCoordsAtTime( double time ) const
+    {
+        double timePeriod = fmod( time, m_period );
+        double angle = ( timePeriod / m_period ) * 3.1412 * 2.0;
+        
+        Coords p1 = m_planet->GetCoordsAtTime( time );
+        double xval = cos( angle ) * m_radius;
+        double yval = sin( angle ) * m_radius; 
+        Coords relative_position = Coords(xval, yval);
+        Coords temp = p1 + relative_position;
+        return temp;
+    }
+private:
+    MungoCPtr m_planet;
+    double m_radius, m_period;
+};
+
+// -----------------------------
+
 class HalfWayBetweenMungo: public Mungo
 {
 public:
@@ -38,9 +68,9 @@ public:
     
     virtual Coords GetCoordsAtTime( double time ) const
     {
-        Coords t1 = m_one->GetCoordsAtTime( time );
-        Coords t2 = m_two->GetCoordsAtTime( time );
-        Coords temp = ( t1 + t2 ) / 2.;
+        Coords m1 = m_one->GetCoordsAtTime( time );
+        Coords m2 = m_two->GetCoordsAtTime( time );
+        Coords temp = ( m1 + m2 ) / 2.;
         return temp;
     }
     
@@ -194,4 +224,10 @@ MungoCPtr MungoFactory::CreateTemporalOffset( MungoCPtr offsetTarget, double tim
 MungoCPtr MungoFactory::CreateHalfWayBetween( MungoCPtr one, MungoCPtr two )
 {
     return new HalfWayBetweenMungo( one, two );
+}
+
+// static
+MungoCPtr MungoFactory::CreateOrbitAroundMungo( MungoCPtr planet, double radius, double period )
+{
+    return new OrbitAroundMungo( planet, radius, period );
 }
