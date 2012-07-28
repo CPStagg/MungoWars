@@ -16,7 +16,10 @@ void CreateMungos()
     Coords c2( -0.25, -0.25 );
     s_MungoManager.AddMungo( MungoFactory::CreateStaticMungo( c1 ) );
     s_MungoManager.AddMungo( MungoFactory::CreateStaticMungo( c2 ) );
-    s_MungoManager.AddMungo( MungoFactory::CreateLinearMungo( c1, c2, 1.0, 3.0 ) );
+    MungoCPtr firstMover = MungoFactory::CreateLinearMungo( c1, c2, 1.0, 3.0 );
+    s_MungoManager.AddMungo( firstMover );
+    s_MungoManager.AddMungo( MungoFactory::CreateTemporalOffset( firstMover, 0.4 ) );
+    s_MungoManager.AddMungo( MungoFactory::CreateTemporalOffset( firstMover, 0.8 ) );
 }
  
 // ---- Main Function ----

@@ -51,6 +51,7 @@ public:
 	static MungoCPtr CreateStaticMungo( const Coords& );
     static MungoCPtr CreateLinearMungo( const Coords& start, const Coords& end,
                                         double startTime, double endTime );
+    static MungoCPtr CreateTemporalOffset( MungoCPtr offsetTarget, double timeOffset );
 };
 
 // ---------------------------------------

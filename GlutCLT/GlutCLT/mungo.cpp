@@ -62,6 +62,24 @@ private:
 
 // --------------------------------
 
+class TemporalOffset : public Mungo
+{
+public:
+    TemporalOffset( MungoCPtr offsetTarget, double timeOffset )
+    :   m_Target( offsetTarget ), m_Offset( timeOffset ) {}
+    
+    virtual Coords GetCoordsAtTime( double time ) const
+    {
+        return m_Target->GetCoordsAtTime( time + m_Offset );
+    }
+    
+private:
+    MungoCPtr   m_Target;
+    double      m_Offset;
+};
+
+// --------------------------------
+
 void MungoManager::AddMungo( MungoCPtr ptr )
 {
     m_List.AddItem(ptr);
@@ -90,4 +108,10 @@ MungoCPtr MungoFactory::CreateLinearMungo( const Coords& start, const Coords& en
                                         double startTime, double endTime )
 {
     return new LinearMoveMungo( start, end, startTime, endTime );
+}
+
+// static
+MungoCPtr MungoFactory::CreateTemporalOffset( MungoCPtr offsetTarget, double timeOffset )
+{
+    return new TemporalOffset( offsetTarget, timeOffset );
 }
