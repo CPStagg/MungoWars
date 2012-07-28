@@ -22,6 +22,7 @@ struct Coords
     Coords operator + ( const Coords& xRef ) const { return Coords( x + xRef.x, y + xRef.y ); }
     Coords operator - ( const Coords& xRef ) const { return Coords( x - xRef.x, y - xRef.y ); }
     Coords operator * ( double ratio ) const { return Coords( x * ratio, y * ratio ); }
+    Coords operator / ( double divisor ) const { return Coords( x / divisor, y / divisor); }
     
     double x, y;
 };
@@ -52,6 +53,8 @@ public:
     static MungoCPtr CreateLinearMungo( const Coords& start, const Coords& end,
                                         double startTime, double endTime );
     static MungoCPtr CreateTemporalOffset( MungoCPtr offsetTarget, double timeOffset );
+    static MungoCPtr CreateHalfWayBetween( MungoCPtr one, MungoCPtr two );
+
 };
 
 // ---------------------------------------

@@ -14,12 +14,25 @@ void CreateMungos()
 {
     Coords c1( 0.25, 0.25 );
     Coords c2( -0.25, -0.25 );
+    Coords d1 = ( c1 * -1 );
+    Coords d2 = ( c2 * -1 );
+    Coords e1( 0.75, -0.5 );
+    Coords e2( 0.55, 0.65 );
+    
     s_MungoManager.AddMungo( MungoFactory::CreateStaticMungo( c1 ) );
     s_MungoManager.AddMungo( MungoFactory::CreateStaticMungo( c2 ) );
     MungoCPtr firstMover = MungoFactory::CreateLinearMungo( c1, c2, 1.0, 3.0 );
+    MungoCPtr secondMover = MungoFactory::CreateLinearMungo( d1, d2, 1.0, 3.0 );
+    MungoCPtr thirdMover = MungoFactory::CreateLinearMungo( e1, e2, 0.0, 5.0 );
+    
     s_MungoManager.AddMungo( firstMover );
+    s_MungoManager.AddMungo( secondMover );
+    s_MungoManager.AddMungo( thirdMover );
+    
     s_MungoManager.AddMungo( MungoFactory::CreateTemporalOffset( firstMover, 0.4 ) );
     s_MungoManager.AddMungo( MungoFactory::CreateTemporalOffset( firstMover, 0.8 ) );
+    s_MungoManager.AddMungo( MungoFactory::CreateHalfWayBetween( firstMover, secondMover));
+    s_MungoManager.AddMungo( MungoFactory::CreateHalfWayBetween( firstMover, thirdMover));
 }
  
 // ---- Main Function ----
