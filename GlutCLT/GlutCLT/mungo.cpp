@@ -231,3 +231,11 @@ MungoCPtr MungoFactory::CreateOrbitAroundMungo( MungoCPtr planet, double radius,
 {
     return new OrbitAroundMungo( planet, radius, period );
 }
+
+// static
+MungoCPtr MungoFactory::CreateCrazyOrbitAround( MungoCPtr planet, double radius, double period )
+{
+    MungoCPtr invisibleOrbiter = CreateOrbitAroundMungo( planet, radius, period );
+    
+    return CreateOrbitAroundMungo( invisibleOrbiter, radius / 3.0, period / 5.0 );
+}

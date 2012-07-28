@@ -15,16 +15,19 @@ void CreateMungos()
 {
     Coords c1( -1.0, 0.0 );
     Coords c2( 1.0, 0.5 );
-    Coords d1 = ( c1 * -1 );
-    Coords d2 = ( c2 * -1 );
+    Coords d1( 0.5, 1.0 );
+    Coords d2( -.25, -1.0);
     Coords e1( 0.75, -0.5 );
     Coords e2( 0.55, 0.65 );
     
-    s_MungoManager.AddMungo( MungoFactory::CreateStaticMungo( c1 ) );
+    MungoCPtr static1 = MungoFactory::CreateStaticMungo( c1 );
+    s_MungoManager.AddMungo( static1 );
     s_MungoManager.AddMungo( MungoFactory::CreateStaticMungo( c2 ) );
     MungoCPtr firstMover = MungoFactory::CreateLinearMungo( c1, c2, 1.0, 3.0 );
-    MungoCPtr secondMover = MungoFactory::CreateLinearMungo( d1, d2, 1.0, 3.0 );
+    MungoCPtr secondMover = MungoFactory::CreateLinearMungo( d1, d2, 0.0, 10.0 );
     MungoCPtr thirdMover = MungoFactory::CreateLinearMungo( e1, e2, 0.0, 5.0 );
+    
+    secondMover->AssignColor( MColor( 0.7, 0.7, 0.7 ) );
     
     thirdMover->AssignColor( MColor( 1.0, 0.4, 0.4 ) );
     
@@ -55,6 +58,14 @@ void CreateMungos()
     MungoCPtr metaorbiter = MungoFactory::CreateOrbitAroundMungo(orbiter, 0.1, 1.0);
     metaorbiter->AssignColor( MColor( 0.5, 0.1, 0.1 ) );
     s_MungoManager.AddMungo( metaorbiter );
+    
+    MungoCPtr crazyorbiter = MungoFactory::CreateCrazyOrbitAround(secondMover, 0.3, 2.0);
+    crazyorbiter->AssignColor( MColor( 0.9, 0.9, 0.6 ) );
+    s_MungoManager.AddMungo( crazyorbiter );
+
+    MungoCPtr zinger = MungoFactory::CreateHalfWayBetween( crazyorbiter, static1);
+    zinger->AssignColor( MColor( 1.0, 1.0, 1.0 ) );
+    s_MungoManager.AddMungo( zinger );
 }
  
 // ---- Main Function ----

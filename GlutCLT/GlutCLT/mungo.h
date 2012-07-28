@@ -80,6 +80,7 @@ public:
     static MungoCPtr CreateHalfWayBetween( MungoCPtr one, MungoCPtr two );
     static MungoCPtr CreateOrbitAroundMungo( MungoCPtr planet, double radius, double period );
 
+    static MungoCPtr CreateCrazyOrbitAround( MungoCPtr planet, double radius, double period );
 };
 
 // ---------------------------------------
